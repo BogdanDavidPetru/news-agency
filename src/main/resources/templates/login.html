@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+    <title>LOGIN</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="content">
+        <div class="container-fluid">
+        </div>
+        <div class="modal-dialog container-fluid" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add record</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="#" th:action="@{/login/submit}" th:object="${entry}"
+                          method="post">
+                        <fieldset>
+                            <script type = "text/javascript">
+                                function myFunction() {
+                                    var x = document.getElementById("check-password");
+                                    if (x.type === "password") {
+                                        x.type = "text";
+                                    } else {
+                                        x.type = "password";
+                                    }
+                                }
+                            </script>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" th:field="*{username}" autocomplete="off" class="form-control" id="username">
+                            </div>
+                            <div>
+                                <label for="check-password">Password</label>
+                                <input type="password" th:field="*{password}" autocomplete="off" class="form-control" id="check-password">
+                                <input type="checkbox" onclick="myFunction()">Show Password
+                            </div>
+
+                        </fieldset>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">LOGIN</button>
+                        </div>
+                    </form>
+                    <div th:if="${errorMessage != null}" class="alert alert-danger alert-dismissible">
+                        <a href="/login" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <span th:text="${errorMessage != null} ? ${errorMessage}"></span>
+<!--                        <strong>Warning!</strong> Indicates a warning that might need attention.-->
+                    </div>
+
+                </div>
+                <a href="/home">
+                    <button>
+                        HOME
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

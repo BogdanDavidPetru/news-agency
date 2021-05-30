@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles/page_style.css">
+    <meta charset="UTF-8">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <title>Read Article</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="content">
+        <div class="container-fluid">
+        </div>
+        <div class="modal-dialog container-fluid" role="document">
+            <div class="modal-content">
+                <article  th:object="${article}" class="article">
+                    <h1 th:text="${article.title}">Text..</h1>
+                    <hr style="clear:both;"/>
+                    <section class="author">
+                        <h3 style="text-align: left; float:left">Author:  &nbsp </h3>
+                        <h3 style="text-align: left; float:left" th:text="${article.authorName}">Text..</h3>
+                        <hr style="clear:both;"/>
+                    </section>
+
+                    <section class="abstract">
+                        <h5 >Abstract:</h5>
+                        <p style="  word-wrap: break-word" th:text="${article.abstractText}" >Text..</p>
+                        <hr style="clear:both;"/>
+                    </section>
+                    <section class="body">
+                        <h5 >Body </h5>
+                        <p style="  word-wrap: break-word" th:text="${article.body}">Text..</p>
+                        <hr style="clear:both;"/>
+                    </section>
+                    <section class="relatedArticles">
+                        <h5 >Related Articles </h5>
+                        <table  style="width: 80%">
+                            <tr th:each="article : ${relatedArticles}">
+                                <td >
+                                    <a th:href="@{/articles/{id}(id = ${article.id})}" style="color: inherit; text-decoration: none;">
+                                        <p th:text="${article.title}">Text..</p >
+                                    </a>
+                                </td>
+                                <td>
+                                    <p  th:text="${article.abstractText}"> Text..</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                </article>
+            </div>
+        </div>
+        <div>
+            <a th:href="@{/user/{idAuthor}(idAuthor = ${idAuthor})}">
+                <button>
+                    BACK
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
